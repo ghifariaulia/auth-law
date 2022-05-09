@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -79,11 +80,11 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'auth_law',
-        'USER': 'law',
-        'PASSWORD': 'law',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'd487ltd6c5hk3a',
+        'USER': 'dojpmzrzkvbozj',
+        'PASSWORD': 'd314c8e5f8c96912775407ad4e2098752797c4cddfcf2b4c07d967904ab0e413',
+        'HOST': 'ec2-35-168-194-15.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -122,7 +123,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "static/"
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
