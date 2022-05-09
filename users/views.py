@@ -22,7 +22,12 @@ class LoginAPI(LoginView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         login(request, user)
-        return super(LoginAPI, self).post(request, format=None)      
+        user_info = super(LoginAPI, self).post(request, format=None)
+        serializer = serialize_user(user)
+        user_info.data['username'] = serializer['username']
+        user_info.data['email'] = serializer['email']
+        user_info.data['name'] = serializer['name']
+        return Response({'user_info': user_info.data})  
 
 @api_view(['POST'])
 def register(request):

@@ -152,7 +152,7 @@ REST_FRAMEWORK = {
 
 REST_KNOX = {
     'TOKEN_TTL': timedelta(hours=5),
-    'TOKEN_LIMIT_PER_USER': 1,
+    'TOKEN_LIMIT_PER_USER': None,
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
