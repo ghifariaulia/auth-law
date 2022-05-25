@@ -1,6 +1,8 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.views import APIView
+from django.http import HttpResponse
 from knox.auth import AuthToken, TokenAuthentication
 from .serializers import RegisterSerializer
 from rest_framework import status, permissions, request
@@ -48,3 +50,13 @@ def get_user(request):
             'user_info': serialize_user(user)
         })
     return Response({'error_message': 'tidak terautentikasi'}, status.HTTP_401_UNAUTHORIZED)
+
+class VerifyToken(APIView):
+    def post(self, request):
+        token = request.headers["Authorization"][6:14]
+        try:
+            user = AuthToken.objects.get(token_key=token)
+            return HttpResponse(user)
+        except AttributeError:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token salah")
+        
