@@ -57,6 +57,6 @@ class VerifyToken(APIView):
         try:
             user = AuthToken.objects.get(token_key=token)
             return HttpResponse(user)
-        except AttributeError:
+        except AuthToken.DoesNotExist:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token salah")
         
