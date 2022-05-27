@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
-import django_heroku
 from pathlib import Path
 from datetime import timedelta
 
@@ -27,7 +26,7 @@ SECRET_KEY = 'django-insecure-!l8r)1cavy08wc+%$p(7c*enh8)ra0rkx3)fzt30ma--pl)m)2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['34.168.241.7', 'localhost']
 
 
 # Application definition
@@ -83,25 +82,13 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd487ltd6c5hk3a',
-        'USER': 'dojpmzrzkvbozj',
-        'PASSWORD': 'd314c8e5f8c96912775407ad4e2098752797c4cddfcf2b4c07d967904ab0e413',
-        'HOST': 'ec2-35-168-194-15.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'NAME': 'auth_law',
+        'USER': 'law',
+        'PASSWORD': 'law',
+        'HOST': '34.168.99.110',
+        'PORT': '',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'auth_law',
-#         'USER': 'law',
-#         'PASSWORD': 'law',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -139,7 +126,6 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "static/"
-django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
